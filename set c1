@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+class Multiply;
+
+class Number1 {
+private:
+    int num1;
+
+public:
+    
+    Number1(int n) : num1(n) {}
+
+    
+    int getNum1() const {
+        return num1;
+    }
+
+    
+    friend class Multiply;
+};
+
+class Number2 {
+private:
+    int num2;
+
+public:
+    
+    Number2(int n) : num2(n) {}
+
+   
+    int getNum2() const {
+        return num2;
+    }
+
+    
+    friend class Multiply;
+};
+
+
+class Multiply {
+public:
+    
+    int multiplyNumbers(const Number1& n1, const Number2& n2) {
+        return n1.num1 * n2.num2;  
+    }
+};
+
+int main() {
+    int x, y;
+
+  
+    cout << "Enter first number: ";
+    cin >> x;
+
+    cout << "Enter second number: ";
+    cin >> y;
+
+
+    Number1 n1(x);
+    Number2 n2(y);
+
+   
+    Multiply m;
+
+
+    int result = m.multiplyNumbers(n1, n2);
+    cout << "The multiplication result of " << x << " and " << y << " is: " << result << endl;
+
+    return 0;
+}
