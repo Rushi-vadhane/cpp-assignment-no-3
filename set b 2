@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class Distance {
+private:
+    int feet;
+    float inches;
+
+public:
+    // Member function to accept distance
+    void acceptDistance() {
+        cout << "Enter feet: ";
+        cin >> feet;
+        cout << "Enter inches: ";
+        cin >> inches;
+
+        // Convert inches to feet if inches is greater than or equal to 12
+        if (inches >= 12) {
+            feet += inches / 12;  // Add the feet equivalent of inches
+            inches = (int)inches % 12;  // Keep the remainder as inches
+        }
+    }
+
+    // Member function to display distance
+    void displayDistance() const {
+        cout << feet << " feet " << inches << " inches" << endl;
+    }
+
+    // Member function to add two Distance objects
+    Distance addDistance(const Distance& d) {
+        Distance temp;
+        temp.feet = feet + d.feet;
+        temp.inches = inches + d.inches;
+
+        // Convert inches to feet if it exceeds 12 inches
+        if (temp.inches >= 12) {
+            temp.feet += temp.inches / 12;
+            temp.inches = (int)temp.inches % 12;
+        }
+
+        return temp;  // Return the new Distance object
+    }
+};
+
+int main() {
+    Distance d1, d2, result;
+
+    // Accept distance for the first object
+    cout << "Enter distance for first object:" << endl;
+    d1.acceptDistance();
+
+    // Accept distance for the second object
+    cout << "Enter distance for second object:" << endl;
+    d2.acceptDistance();
+
+    // Display the two distances
+    cout << "\nDistance 1: ";
+    d1.displayDistance();
+    cout << "Distance 2: ";
+    d2.displayDistance();
+
+    // Add the two distances
+    result = d1.addDistance(d2);
+
+    // Display the result of addition
+    cout << "\nResultant distance after addition: ";
+    result.displayDistance();
+
+    return 0;
+}
