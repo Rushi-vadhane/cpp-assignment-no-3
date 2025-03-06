@@ -1,0 +1,63 @@
+Write a C++ program to calculate maximum and minimum of two integer numbers of two
+different classes.(Use friend function
+
+#include <iostream>
+using namespace std;
+
+// Forward declaration of class B
+class B;
+
+// Class A
+class A {
+private:
+    int numA;
+public:
+    // Constructor to initialize numA
+    A(int a) : numA(a) {}
+
+    // Declare class B's function as friend
+    friend void findMaxMin(A, B);
+};
+
+// Class B
+class B {
+private:
+    int numB;
+public:
+    // Constructor to initialize numB
+    B(int b) : numB(b) {}
+
+    // Declare class A's function as friend
+    friend void findMaxMin(A, B);
+};
+
+// Friend function to find max and min of numbers in both classes
+void findMaxMin(A a, B b) {
+    // Calculate max and min
+    int max = (a.numA > b.numB) ? a.numA : b.numB;
+    int min = (a.numA < b.numB) ? a.numA : b.numB;
+
+    // Display the results
+    cout << "Max: " << max << endl;
+    cout << "Min: " << min << endl;
+}
+
+int main() {
+    int a, b;
+
+    // Input numbers for both classes
+    cout << "Enter number for class A: ";
+    cin >> a;
+
+    cout << "Enter number for class B: ";
+    cin >> b;
+
+    // Create objects of class A and B
+    A objA(a);
+    B objB(b);
+
+    // Call friend function to calculate and display max and min
+    findMaxMin(objA, objB);
+
+    return 0;
+}
