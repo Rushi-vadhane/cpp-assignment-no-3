@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    float height;  // Variable to store the height of the student
+
+public:
+    // Member function to accept the height of a student
+    void setHeight(float h) {
+        height = h;
+    }
+
+    // Member function to get the height of the student
+    float getHeight() const {
+        return height;
+    }
+};
+
+int main() {
+    int n;  // Number of students
+    float totalHeight = 0.0;  // Variable to store the total height
+
+    // Ask the user to input the number of students
+    cout << "Enter the number of students: ";
+    cin >> n;
+
+    // Create an array of Student objects
+    Student students[n];
+
+    // Input heights of all students
+    for (int i = 0; i < n; i++) {
+        float h;
+        cout << "Enter height of student " << i + 1 << " (in cm): ";
+        cin >> h;
+        students[i].setHeight(h);
+    }
+
+    // Calculate the total height
+    for (int i = 0; i < n; i++) {
+        totalHeight += students[i].getHeight();
+    }
+
+    // Calculate and display the average height
+    float averageHeight = totalHeight / n;
+    cout << "The average height of the students is: " << averageHeight << " cm" << endl;
+
+    return 0;
+}
